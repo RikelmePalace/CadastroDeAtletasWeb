@@ -1,39 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aula 01</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
-
-    <script>
-//Função para cadastrar o usuário
-        function cadastrar(event){
-            const nome = document.getElementById("input-nome").value; 
-            event.preventDefault();
-            alert("Dados do(a) " + nome + " cadastrados!");
-            document.getElementById("form-cadastro").reset(); 
-            document.getElementById("toggleIcon").className = "fa-solid fa-eye";
-        }
-//Função para alternar a visibilidade da senha
-        function togglePassword() {
-            const inputSenha = document.getElementById('input-senha');
-            const icon = document.getElementById('toggleIcon');
-
-            if (inputSenha.type === 'password') {
-                inputSenha.type = 'text';
-                icon.className = "fa-solid fa-eye-slash";
-            } else {
-                inputSenha.type = 'password';
-                icon.className = "fa-solid fa-eye";
-            }
-        }
-    </script>
-
-
 </head>
 <body>
     <form id="form-cadastro" onsubmit="cadastrar(event)">
@@ -60,6 +32,28 @@
         </div>
 
         <button id="btn-cadastrar" type="submit">Cadastrar</button>
+
+        <button type="button" onclick="verCadastrados()" class="button-cadastrados">
+            Ver Cadastrados
+        </button>
     </form>
+
+    <button id="btn-help" class="help" onclick="showHelpMessage()">
+        <img src="img/help.svg" alt="Help">
+    </button>
+
+    <div id="overlay" class="overlay">
+    <div class="modal">
+        <p id="mensagem"></p>
+        <button type="button" onclick="fecharOverlay()" 
+
+        style="background-color: #0400ff; margin-top: 15px;">Fechar</button>
+        
+</div>
+    <footer>
+        Copywright 2026 © Todos os direitos reservados
+    </footer>
+
+    <script src="java.js"></script>
 </body>
 </html>
