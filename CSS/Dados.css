@@ -1,0 +1,325 @@
+/* --- Reset básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+/* --- Container Principal Fullscreen --- */
+.main-fullscreen-container {
+    display: flex;
+    flex-direction: column; /* Organiza header, main e footer em coluna */
+    height: 100vh; /* Altura total da tela */
+    width: 100vw; /* Largura total da tela */
+    background-color: #fbc98e; /* Cor de fundo pêssego/laranja claro */
+}
+
+/* --- Barra Superior --- */
+.header-fullscreen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #fca637; /* Laranja da barra superior */
+    color: #136079;
+    height: 70px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-title-fullscreen {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.profile-icon-fullscreen {
+    width: 45px;
+    height: 45px;
+    background-color: #ffc400a8; /* Azul do ícone */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #136079; /* Borda azul escura */
+    cursor: pointer;
+}
+
+.profile-icon-fullscreen img {
+    width: 65%;
+    height: 65%;
+}
+
+.profile-icon-fullscreen:hover {
+    background-color: #ffc400; /* Azul mais vibrante ao passar o mouse */
+    border-color: #1a7fa0; /* Borda mais clara ao passar o mouse */
+}
+
+/* --- Conteúdo Principal --- */
+.main-content-fullscreen {
+    flex: 1; /* Ocupa o espaço restante da tela */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* Permite rolagem se o formulário for muito grande */
+}
+
+.form-main-title-fullscreen {
+    font-size: 2.2rem;
+    color: #136079; /* Azul escuro */
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* O Quadro do Formulário */
+.registration-form-card {
+    background-color: #ffffff; /* Fundo branco puro conforme referência */
+    width: 90%;
+    max-width: 900px; /* Limita a largura para não esparramar demais */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Estilo das seções (Dados Pessoais, Dados Médicos) */
+.form-section-title {
+    color: #136079;
+    border-bottom: 2px solid #ddd;
+    margin: 30px 0 20px 0;
+    font-size: 1.3rem;
+}
+
+.form-section-title.doctors-section {
+    color: #2b98c3; /* Azul mais claro para dados médicos */
+}
+
+/* Layout das linhas do formulário */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* Estilo dos Inputs e Labels */
+.input-group-fullscreen {
+    flex: 1; /* Ocupa metade da linha */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #222;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 12px; /* Arredondado conforme referência */
+    border: none;
+    background-color: #ffffff;
+    
+    /* Efeito de Borda conforme a referência */
+    border: none;
+    box-shadow: 
+        0 0 0 1px #d3d3d3, /* Borda interna fina cinza claro */
+        0 3px 0 0 #0000ff; /* Borda externa inferior azul grossa */
+        
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+    box-shadow: 
+        0 0 0 2px #0000ff, /* Borda interna azul ao focar */
+        0 3px 0 0 #0000ff;
+}
+
+input::placeholder, select:disabled {
+    color: #aaa;
+}
+
+/* --- Barra Inferior --- */
+.footer-fullscreen {
+    background-color: #fca637; /* Laranja da barra inferior */
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.footer-buttons-container {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-btn-fullscreen {
+    padding: 12px 25px;
+    border: none;
+    background-color: #333333; /* Cinza escuro dos botões */
+    color: white;
+    border-radius: 50px; /* Bem arredondado 'pill' */
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.footer-btn-fullscreen:hover {
+    background-color: #555;
+}
+
+/* Botão Ativo */
+.footer-btn-fullscreen.active-btn {
+    background-color: #136079; /* Azul do perfil para indicar ativo */
+}
+
+/* --- Responsividade para telas menores --- */
+@media (max-width: 768px) {
+    .header-fullscreen, .footer-fullscreen {
+        padding: 15px 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .registration-form-card {
+        padding: 25px;
+    }
+}
+
+/* Estilo do Botão Principal de Cadastro*/
+.button-container-main {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.btn-cadastrar-principal {
+    background-color: #136079; /* Azul escuro do perfil/títulos */
+    color: white;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 50px; /* Estilo pílula */
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(19, 96, 121, 0.3);
+}
+
+.btn-cadastrar-principal:hover {
+    background-color: #1a7fa0;
+    transform: translateY(-3px); /* Efeito de levante */
+    box-shadow: 0 6px 20px rgba(19, 96, 121, 0.4);
+}
+
+.btn-cadastrar-principal:active {
+    transform: translateY(0);
+}
+
+/*Estilo da Lista de Atletas Cadastrados*/
+#listaUsuarios {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.atleta-item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #136079; /* Detalhe em azul */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.atleta-item strong {
+    color: #136079;
+}
+
+/* Container que envolve nome e ícone */
+.user-profile-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+#nome-usuario-logado {
+    color: #136079; /* Azul combinando com o cabeçalho */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* O container do ícone precisa de posição relativa para o dropdown alinhar com ele */
+.profile-menu-container {
+    position: relative;
+}
+
+.profile-icon-fullscreen {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.profile-icon-fullscreen:hover {
+    transform: scale(1.05);
+}
+
+/* A caixa branca (Dropdown) */
+.dropdown-content {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 160px;
+    z-index: 1000;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#dropdown-nome-usuario {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Botão de Sair Vermelho */
+.btn-logout {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #c9302c;
+}

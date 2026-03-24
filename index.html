@@ -1,59 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 01</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Cadastro de Atletas</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <form id="form-cadastro" onsubmit="cadastrar(event)">
-        <h1>Formulário de Cadastro</h1>
-       
-        <div class="inputs">
-            <div class="grupoLabelInput">
-                <label for="input-nome">Nome:</label>
-                <input id="input-nome" placeholder="Digite seu nome" type="text" required>
-            </div>
-            
-            <div class="grupoLabelInput">
-                <label for="input-email">Email:</label>
-                <input id="input-email" placeholder="Digite seu email" type="email" required>
-            </div>
-            
-            <div class="grupoLabelInput">
-                <label for="input-senha">Senha:</label>
-                <div class="password-wrapper">
-                    <input id="input-senha" placeholder="Digite sua senha" type="password" required>
-                    <i class="fa-solid fa-eye" id="toggleIcon" onclick="togglePassword()"></i>
-                </div>
-            </div>
+    <div class="main-container">
+        <div class="banner-side">
+            <img src="img/Corrida-de-Rua-para-Iniciantes_-5-Dicas-Essenciais-para-Comecar-com-o-Pe-Direito-Banner-Site-1024x597.jpg.webp" alt="Atleta correndo">
         </div>
 
-        <button id="btn-cadastrar" type="submit">Cadastrar</button>
+        <div class="form-side">
+            <h1>Cadastro de Atletas</h1>
+            
+            <div class="form-card">
+                <h2>Preencha seu nome para continuar</h2>
+                
+                <form id="cadastroForm">
+                    <div class="input-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" placeholder="Digite seu nome" required>
+                    </div>
+                    <button type="submit" id="btnContinuar">Continuar</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        <button type="button" onclick="verCadastrados()" class="button-cadastrados">
-            Ver Cadastrados
-        </button>
-    </form>
-
-    <button id="btn-help" class="help" onclick="showHelpMessage()">
+    <button id="btn-help" class="help">
         <img src="img/help.svg" alt="Help">
     </button>
 
-    <div id="overlay" class="overlay">
-    <div class="modal">
-        <p id="mensagem"></p>
-        <button type="button" onclick="fecharOverlay()" 
+    <div id="toast" class="toast-container">
+        <span id="toast-message">Por favor, digite um nome válido</span>
+    </div>
 
-        style="background-color: #0400ff; margin-top: 15px;">Fechar</button>
-        
-</div>
     <footer>
-        Copywright 2026 © Todos os direitos reservados
+        Copyright 2026 © Todos os direitos reservados
     </footer>
 
-    <script src="java.js"></script>
+    <script src="JAVA/java.js"></script>
 </body>
 </html>

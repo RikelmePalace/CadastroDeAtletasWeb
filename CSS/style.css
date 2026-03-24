@@ -1,0 +1,236 @@
+/* Reset básico para remover margens padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* O body agora ocupa 100% da viewport */
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Lado Esquerdo: Imagem ocupando metade da tela */
+.banner-side {
+    flex: 1.5; /* Ocupa metade do espaço disponível */
+    height: 100%;
+}
+
+.banner-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+/* Lado Direito: Área do formulário */
+.form-side {
+    flex: 1; /* Ocupa a outra metade */
+    background-color: #fbc98e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza verticalmente o conteúdo */
+    padding: 20px;
+}
+
+footer {
+    position: absolute; /* Fixa o rodapé em relação ao lado pêssego */
+    bottom: 20px; /* Distância da borda inferior */
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #030303;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 2.5rem; /* Aumentado para telas maiores */
+    margin-bottom: 40px;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+}
+
+/* Card centralizado */
+.form-card {
+    background-color: #d9d9d9;
+    padding: 50px 40px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 450px; /* Largura máxima para não ficar largo demais em monitores UltraWide */
+    box-shadow: 0 15px 35px rgba(255, 153, 0, 0.795);
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+/* --- Trecho a ser substituído no seu style.css --- */
+
+.input-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: 700; /* Negrito mais forte */
+    margin-bottom: 10px;
+    font-size: 1.1rem; /* Mantive o tamanho grande */
+    color: #222; /* Cor mais escura, conforme a nova imagem */
+}
+
+input {
+    width: 100%;
+    /* Mantive o preenchimento generoso para preencher a tela */
+    padding: 15px 25px; 
+    
+    /* MODIFICAÇÃO PRINCIPAL: Estilo conforme a nova imagem */
+    border-radius: 12px; /* Cantos arredondados, mas não pílula */
+    background-color: #ffffff; /* Fundo branco puro */
+    color: #333; /* Texto de digitação escuro */
+    font-size: 1rem; /* Mantive o tamanho */
+    
+    /* Efeito de Borda conforme a imagem de referência */
+    /* 1. Removemos a borda padrão para criar uma customizada */
+    border: none;
+    
+    /* 2. Criamos a borda dupla usando box-shadow:
+       - Um shadow para a borda interna clara (borda superior/laterais)
+       - Outro shadow para a borda externa azul (borda inferior)
+    */
+    box-shadow: 
+        0 0 0 1px #d3d3d3, /* Borda interna fina cinza claro */
+        0 3px 0 0 #0000ff; /* Borda externa inferior azul grossa */
+        
+    outline: none; /* Remove a borda azul padrão ao focar */
+    transition: all 0.2s ease-in-out;
+}
+
+input::placeholder {
+    color: #888; /* Mantive a cor do placeholder */
+}
+
+/* Efeito ao focar: vamos realçar o azul */
+input:focus {
+    box-shadow: 
+        0 0 0 1px #0000ff, /* Borda interna muda para azul */
+        0 3px 0 0 #0000ff; /* Borda inferior permanece azul */
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 50px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Ajuste para dispositivos móveis (Celulares) */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Empilha a imagem e o formulário */
+    }
+    
+    .banner-side {
+        height: 40vh; /* Imagem fica no topo ocupando 40% da altura */
+    }
+    
+    .form-side {
+        height: 60vh;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+}
+
+.help{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    bottom: 20px;
+    right: 20px;
+    padding: 2px;
+    width: 50px;
+    height: 50px;
+    background-color:  rgb(32, 152, 192);
+    border-radius: 50px;
+    color: white;
+    overflow: hidden; 
+
+}
+.help:hover{
+    background-color: rgb(19, 96, 121);
+    color: white;
+    transition: 1s;
+    cursor: pointer;
+     width: 51px;
+    height: 51px;
+}
+.help img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: white;
+}
+
+/* Balão de mensagem (Toast)*/
+
+.toast-container {
+    visibility: hidden; /* Escondido por padrão */
+    min-width: 250px;
+    background-color: #ff9100e5; /* Vermelho para atenção */
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 30px; /* Aparece no topo */
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Classe que o JS vai adicionar para mostrar o balão */
+.toast-container.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animações */
+@keyframes fadein {
+    from { top: 0; opacity: 0; }
+    to { top: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+    from { top: 30px; opacity: 1; }
+    to { top: 0; opacity: 0; }
+}
