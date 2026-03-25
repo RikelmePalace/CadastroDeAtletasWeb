@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 6. RENDERIZAR LISTA COM TABELA (TD)
-    function renderizarLista() {
+   function renderizarLista() {
         if (!listaUl) return;
         listaUl.innerHTML = '';
         const atletas = JSON.parse(localStorage.getItem('bancoAtletas')) || [];
@@ -94,38 +94,45 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        atletas.forEach(atleta => {
+        // Usamos o 'index' para saber qual atleta excluir
+        atletas.forEach((atleta, index) => {
             const li = document.createElement('li');
-            li.style = "background: white; margin-bottom: 20px; padding: 20px; border-radius: 15px; list-style: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; border-left: 10px solid #136079; font-family: sans-serif;";
+            li.style = "background: white; margin-bottom: 20px; padding: 20px; border-radius: 15px; list-style: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; border-left: 10px solid #136079; font-family: sans-serif; position: relative;";
             
             li.innerHTML = `
-                <table style="width: 100%; border-collapse: collapse; color: #333;">
-                    <tr>
-                        <td style="padding: 5px; width: 50%;"><strong>Nome:</strong> ${atleta.nomeAtleta}</td>
-                        <td style="padding: 5px;"><strong>CPF:</strong> ${atleta.cpf}</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;"><strong>Nascimento:</strong> ${atleta.dtNascimento}</td>
-                        <td style="padding: 5px;"><strong>Nacionalidade:</strong> ${atleta.nacionalidade}</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;"><strong>Modalidade:</strong> ${atleta.modalidade}</td>
-                        <td style="padding: 5px;"><strong>Categoria:</strong> ${atleta.categoriaAtleta}</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;"><strong>Gênero:</strong> ${atleta.genero || 'N/A'}</td>
-                        <td style="padding: 5px;"><strong>Tipo Sanguíneo:</strong> ${atleta.tipoSanguineoAtleta}</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;"><strong>Peso:</strong> ${atleta.pesoAtleta}kg</td>
-                        <td style="padding: 5px;"><strong>Altura:</strong> ${atleta.alturaAtleta}m</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding: 5px; border-top: 1px solid #eee; margin-top: 5px;">
-                            <strong>Alergias:</strong> ${atleta.alergiasAtleta || 'Nenhuma'}
-                        </td>
-                    </tr>
-                </table>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <table style="width: 90%; border-collapse: collapse; color: #333;">
+                        <tr>
+                            <td style="padding: 5px; width: 50%;"><strong>Nome:</strong> ${atleta.nomeAtleta}</td>
+                            <td style="padding: 5px;"><strong>CPF:</strong> ${atleta.cpf}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;"><strong>Nascimento:</strong> ${atleta.dtNascimento}</td>
+                            <td style="padding: 5px;"><strong>Nacionalidade:</strong> ${atleta.nacionalidade}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;"><strong>Modalidade:</strong> ${atleta.modalidade}</td>
+                            <td style="padding: 5px;"><strong>Categoria:</strong> ${atleta.categoriaAtleta}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;"><strong>Gênero:</strong> ${atleta.genero || 'N/A'}</td>
+                            <td style="padding: 5px;"><strong>Tipo Sanguíneo:</strong> ${atleta.tipoSanguineoAtleta}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;"><strong>Peso:</strong> ${atleta.pesoAtleta}kg</td>
+                            <td style="padding: 5px;"><strong>Altura:</strong> ${atleta.alturaAtleta}m</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding: 5px; border-top: 1px solid #eee; margin-top: 5px;">
+                                <strong>Alergias:</strong> ${atleta.alergiasAtleta || 'Nenhuma'}
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <button onclick="excluirAtleta(${index})" style="background: #d9534f; color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s;">
+                        Excluir
+                    </button>
+                </div>
             `;
             listaUl.appendChild(li);
         });
@@ -151,3 +158,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Função para excluir o atleta
+function excluirAtleta(index) {
+    if (confirm("Tem certeza que deseja excluir este cadastro?")) {
+        // 1. Pega a lista atual do localStorage
+        let atletas = JSON.parse(localStorage.getItem('bancoAtletas')) || [];
+        
+        // 2. Remove o item pelo índice
+        atletas.splice(index, 1);
+        
+        // 3. Salva a lista atualizada de volta no localStorage
+        localStorage.setItem('bancoAtletas', JSON.stringify(atletas));
+        
+        // 4. Atualiza a tela chamando a função de renderizar novamente
+        // Como a função está dentro do DOMContentLoaded, podemos disparar um clique no botão de lista para atualizar
+        document.getElementById('btn-lista').click();
+        
+        // Ou, se preferir usar o balão de aviso que criamos:
+        const toast = document.getElementById('custom-toast');
+        if (toast) {
+            toast.innerText = "Atleta excluído com sucesso! 🗑️";
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+    }
+}
