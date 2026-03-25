@@ -18,7 +18,7 @@ body, html {
     flex-direction: column; /* Organiza header, main e footer em coluna */
     height: 100vh; /* Altura total da tela */
     width: 100vw; /* Largura total da tela */
-    background-color: #fbc98e; /* Cor de fundo pêssego/laranja claro */
+    background-color: #fbc98e; /* Cor de fundo */
 }
 
 /* --- Barra Superior --- */
@@ -27,7 +27,7 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    background-color: #fca637; /* Laranja da barra superior */
+    background-color: #fca637; /* Cor da barra superior */
     color: #136079;
     height: 70px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -41,7 +41,7 @@ body, html {
 .profile-icon-fullscreen {
     width: 45px;
     height: 45px;
-    background-color: #ffc400a8; /* Azul do ícone */
+    background-color: #ffc400a8; /* Cor do ícone */
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -56,7 +56,7 @@ body, html {
 }
 
 .profile-icon-fullscreen:hover {
-    background-color: #ffc400; /* Azul mais vibrante ao passar o mouse */
+    background-color: #ffc400; /* Cor mais vibrante ao passar o mouse */
     border-color: #1a7fa0; /* Borda mais clara ao passar o mouse */
 }
 
@@ -72,7 +72,7 @@ body, html {
 
 .form-main-title-fullscreen {
     font-size: 2.2rem;
-    color: #136079; /* Azul escuro */
+    color: #136079;
     text-transform: uppercase;
     margin-bottom: 30px;
     text-align: center;
@@ -80,7 +80,7 @@ body, html {
 
 /* O Quadro do Formulário */
 .registration-form-card {
-    background-color: #ffffff; /* Fundo branco puro conforme referência */
+    background-color: #ffffff; /* Fundo branco puro */
     width: 90%;
     max-width: 900px; /* Limita a largura para não esparramar demais */
     padding: 40px;
@@ -124,11 +124,11 @@ label {
 input, select {
     width: 100%;
     padding: 12px 18px;
-    border-radius: 12px; /* Arredondado conforme referência */
+    border-radius: 12px; /* Arredondado */
     border: none;
     background-color: #ffffff;
     
-    /* Efeito de Borda conforme a referência */
+    /* Efeito de Borda */
     border: none;
     box-shadow: 
         0 0 0 1px #d3d3d3, /* Borda interna fina cinza claro */
@@ -152,7 +152,7 @@ input::placeholder, select:disabled {
 
 /* --- Barra Inferior --- */
 .footer-fullscreen {
-    background-color: #fca637; /* Laranja da barra inferior */
+    background-color: #fca637; /* Cor da barra inferior */
     height: 70px;
     display: flex;
     justify-content: center;
