@@ -121,11 +121,32 @@
                 </div>
             </div>
 
-            <div id="container-lista" style="display: none; width: 100%; flex-direction: column; align-items: center; padding-bottom: 100px;">
-                <h2 class="form-main-title-fullscreen">Atletas Cadastrados</h2>
-                <ul id="listaUsuarios" style="width: 100%; max-width: 800px; margin: 0 auto; padding: 0;">
-                    </ul>
-            </div>
+<div id="container-lista" style="display: none; width: 100%; flex-direction: column; align-items: center; padding-bottom: 100px;">
+    <h2 class="form-main-title-fullscreen">Atletas Cadastrados</h2>
+    
+    <div class="table-responsive">
+        <table class="tabela-atletas" id="tabela-atletas">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
+                    <th>Data de Nascimento</th>
+                    <th>CPF</th>
+                    <th>Modalidade</th>
+                    <th>Gênero</th>
+                    <th>Categoria</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
+                    <th>Tipo Sanguíneo</th>
+                    <th>Alergias</th>
+                    <th><img src="img/Lixeira.svg" alt="img" class="excluir-icon"></th>
+                </tr>
+            </thead>
+            <tbody id="corpo-tabela">
+                </tbody>
+        </table>
+    </div>
+</div>
 
         </main>
 

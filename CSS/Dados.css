@@ -233,26 +233,45 @@ input::placeholder, select:disabled {
     transform: translateY(0);
 }
 
-/*Estilo da Lista de Atletas Cadastrados*/
-#listaUsuarios {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+/* --- Estilização da Tabela de Atletas --- */
+.table-responsive {
+    width: 95%;
+    max-width: 1200px;
+    overflow-x: auto; /* Permite rolar para o lado em telas pequenas */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.atleta-item {
-    background-color: #fff;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 10px;
-    border-left: 5px solid #136079; /* Detalhe em azul */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    color: #333;
-    font-size: 0.95rem;
+.tabela-atletas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
 }
 
-.atleta-item strong {
-    color: #136079;
+.tabela-atletas thead tr {
+    background-color: #136079; /* Azul escuro do seu tema */
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.tabela-atletas th, 
+.tabela-atletas td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.tabela-atletas tbody tr {
+    transition: background-color 0.2s;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 1000px) {
+    .tabela-atletas {
+        font-size: 0.8rem;
+    }
 }
 
 /* Container que envolve nome e ícone */
@@ -322,4 +341,55 @@ input::placeholder, select:disabled {
 
 .btn-logout:hover {
     background-color: #c9302c;
+}
+
+/* Garante que a tabela ocupe o espaço correto sem sobras brancas nas pontas */
+.tabela {
+    width: 100%;
+    border-collapse: collapse; /* Une as bordas para não haver espaços vazios */
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+}
+
+/* Estilo do cabeçalho para separar as informações */
+.tabela thead th {
+    background-color: #136079;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória fina no topo */
+}
+
+/* Remove a borda direita do último item (Ações/Excluir) */
+.tabela thead th:last-child, 
+.tabela tbody td:last-child {
+    border-right: none;
+}
+
+/* Efeito ao passar o mouse na linha para facilitar a leitura */
+.tabela tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Ajuste específico do botão de excluir para não deformar a célula */
+.btn-excluir-tabela {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.btn-excluir-tabela:hover {
+    background-color: #c9302c;
+}
+
+/* Estilo do ícone de excluir */
+img.excluir-icon {
+    width: 22px;
+    height: 22px;
 }

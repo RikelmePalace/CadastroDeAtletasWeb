@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('cadastroFormFullscreen');
     const telaCadastro = document.getElementById('tela-cadastro');
     const telaLista = document.getElementById('container-lista');
-    const listaUl = document.getElementById('listaUsuarios');
+    const corpoTabela = document.getElementById('corpo-tabela'); // Novo: TBODY da tabela
     const btnDadosPessoais = document.getElementById('btn-dados');
     const btnLista = document.getElementById('btn-lista');
     
@@ -14,18 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const dropdownMenu = document.getElementById('dropdown-perfil');
     const btnSair = document.getElementById('btn-sair');
 
-    // 2. VERIFICAÇÃO DE LOGIN E NOME DO USUÁRIO
+    // 2. VERIFICAÇÃO DE LOGIN
     const usuarioLogado = localStorage.getItem('usuarioLogado');
     if (usuarioLogado) {
         if (nomeExibicao) nomeExibicao.innerText = usuarioLogado;
         if (dropdownNome) dropdownNome.innerText = usuarioLogado;
     } else {
-        // Se não houver login, redireciona (opcional, remova o comentário abaixo se desejar)
-        // window.location.href = "index.html";
         if (nomeExibicao) nomeExibicao.innerText = "Visitante";
     }
 
-    // 3. FUNÇÃO PARA MOSTRAR O AVISO (TOAST)
+    // 3. FUNÇÃO TOAST (AVISO)
     function mostrarAviso(mensagem) {
         const toast = document.getElementById('custom-toast');
         if (toast) {
@@ -35,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 4. SALVAR CADASTRO DE ATLETA
+    // 4. SALVAR CADASTRO
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -83,62 +81,44 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 6. RENDERIZAR LISTA COM TABELA (TD)
-   function renderizarLista() {
-        if (!listaUl) return;
-        listaUl.innerHTML = '';
-        const atletas = JSON.parse(localStorage.getItem('bancoAtletas')) || [];
+    // 6. RENDERIZAR TABELA (TH/TR/TD)
+    
+function renderizarLista() {
+    if (!corpoTabela) return;
+    corpoTabela.innerHTML = '';
+    const atletas = JSON.parse(localStorage.getItem('bancoAtletas')) || [];
 
-        if (atletas.length === 0) {
-            listaUl.innerHTML = '<li style="text-align:center; list-style:none;">Nenhum atleta cadastrado.</li>';
-            return;
-        }
-
-        // Usamos o 'index' para saber qual atleta excluir
-        atletas.forEach((atleta, index) => {
-            const li = document.createElement('li');
-            li.style = "background: white; margin-bottom: 20px; padding: 20px; border-radius: 15px; list-style: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; border-left: 10px solid #136079; font-family: sans-serif; position: relative;";
-            
-            li.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <table style="width: 90%; border-collapse: collapse; color: #333;">
-                        <tr>
-                            <td style="padding: 5px; width: 50%;"><strong>Nome:</strong> ${atleta.nomeAtleta}</td>
-                            <td style="padding: 5px;"><strong>CPF:</strong> ${atleta.cpf}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 5px;"><strong>Nascimento:</strong> ${atleta.dtNascimento}</td>
-                            <td style="padding: 5px;"><strong>Nacionalidade:</strong> ${atleta.nacionalidade}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 5px;"><strong>Modalidade:</strong> ${atleta.modalidade}</td>
-                            <td style="padding: 5px;"><strong>Categoria:</strong> ${atleta.categoriaAtleta}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 5px;"><strong>Gênero:</strong> ${atleta.genero || 'N/A'}</td>
-                            <td style="padding: 5px;"><strong>Tipo Sanguíneo:</strong> ${atleta.tipoSanguineoAtleta}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 5px;"><strong>Peso:</strong> ${atleta.pesoAtleta}kg</td>
-                            <td style="padding: 5px;"><strong>Altura:</strong> ${atleta.alturaAtleta}m</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="padding: 5px; border-top: 1px solid #eee; margin-top: 5px;">
-                                <strong>Alergias:</strong> ${atleta.alergiasAtleta || 'Nenhuma'}
-                            </td>
-                        </tr>
-                    </table>
-                    
-                    <button onclick="excluirAtleta(${index})" style="background: #d9534f; color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s;">
-                        Excluir
-                    </button>
-                </div>
-            `;
-            listaUl.appendChild(li);
-        });
+    if (atletas.length === 0) {
+        corpoTabela.innerHTML = '<tr><td colspan="12" style="text-align:center; padding: 20px;">Nenhum atleta cadastrado.</td></tr>';
+        return;
     }
 
-    // 7. DROPDOWN DE PERFIL E SAIR
+    atletas.forEach((atleta, index) => {
+        const tr = document.createElement('tr');
+        // Estilo para separar as linhas e centralizar
+        tr.style.borderBottom = "1px solid #eee"; 
+
+        tr.innerHTML = `
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.nomeAtleta}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.nacionalidade}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.dtNascimento}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.cpf}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.modalidade}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.genero || 'N/A'}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.categoriaAtleta}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.pesoAtleta}kg</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.alturaAtleta}m</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.tipoSanguineoAtleta}</td>
+            <td style="padding: 12px; text-align: center; border-right: 1px solid #f0f0f0;">${atleta.alergiasAtleta || 'Nenhuma'}</td>
+            <td style="padding: 12px; text-align: center; width: 80px;">
+                <button class="btn-excluir-tabela" onclick="excluirAtleta(${index})" style="width: auto; padding: 5px 10px;">Excluir</button>
+            </td>
+        `;
+        corpoTabela.appendChild(tr);
+    });
+}
+
+    // 7. DROPDOWN PERFIL
     if (profileBtn) {
         profileBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -159,26 +139,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Função para excluir o atleta
+// 8. FUNÇÃO GLOBAL DE EXCLUSÃO
 function excluirAtleta(index) {
-    if (confirm("Tem certeza que deseja excluir este cadastro?")) {
-        // 1. Pega a lista atual do localStorage
+    if (confirm("Deseja realmente excluir este atleta?")) {
         let atletas = JSON.parse(localStorage.getItem('bancoAtletas')) || [];
-        
-        // 2. Remove o item pelo índice
         atletas.splice(index, 1);
-        
-        // 3. Salva a lista atualizada de volta no localStorage
         localStorage.setItem('bancoAtletas', JSON.stringify(atletas));
         
-        // 4. Atualiza a tela chamando a função de renderizar novamente
-        // Como a função está dentro do DOMContentLoaded, podemos disparar um clique no botão de lista para atualizar
+        // Dispara o clique no botão de lista para atualizar a tabela visualmente
         document.getElementById('btn-lista').click();
         
-        // Ou, se preferir usar o balão de aviso que criamos:
+        // Mostra aviso de exclusão
         const toast = document.getElementById('custom-toast');
         if (toast) {
-            toast.innerText = "Atleta excluído com sucesso! 🗑️";
+            toast.innerText = "Atleta removido! 🗑️";
             toast.style.display = 'block';
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
         }
