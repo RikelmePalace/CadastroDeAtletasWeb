@@ -1,2 +1,2 @@
 Link: 
-https://vercel.com/rikelmepalaces-projects/cadastro-de-atletas-web/DRudb9GFknZuBRdbk4T6Q28PBSXW
+https://cadastro-de-atletas-web.vercel.app/
